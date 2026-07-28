@@ -31,5 +31,5 @@ function getFirstParentElementWithSource(element) {
   const source = getSourceForInstance(instance)
 
   if (source) return source
-  else return getFirstParentElementWithSource(element)
+  else return getFirstParentElementWithSource(parentElement)
 }
