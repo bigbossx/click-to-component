@@ -4,9 +4,15 @@
  */
 
 /**
- * @param {Fiber} instance
+ * @param {Fiber} [instance]
  */
-export function getSourceForInstance({ _debugSource, _debugOwner }) {
+export function getSourceForInstance(instance) {
+  // getReactInstanceForElement may return undefined (e.g. no fiber for the
+  // element); guard before destructuring to avoid a hard crash.
+  if (!instance) return
+
+  const { _debugSource, _debugOwner } = instance
+
   // source is sometimes stored on _debugOwner
   const source = _debugSource || (_debugOwner && _debugOwner._debugSource)
 
